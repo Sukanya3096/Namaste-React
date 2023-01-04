@@ -1,0 +1,114 @@
+●  What is `NPM`?
+
+A. npm is two things: first and foremost, it is an online repository for the publishing of open-source Node.js projects; second, it is a command-line utility for interacting with said repository that aids in package installation, version management, and dependency management. 
+
+● What is `Parcel/Webpack`? Why do we need it?
+
+A. Firstly, we should know, a module bundler is a tool that takes pieces of JavaScript and their dependencies and bundles them into a single file, usually for use in the browser.
+Once such thing is parcel, a web application bundler, differentiated by its developer experience. It offers blazing fast performance utilizing multicore processing, and requires zero configuration
+
+● What is `.parcel-cache`
+
+A. It stores information about your project when parcel builds it, so that when it rebuilds, it doesn't have to re-parse and re-analyze everything from scratch. It's a key reason why parcel can be so fast in development mode.
+
+● What is `npx` ?
+
+A. Sometimes you might want to take a look at a specific package and try out some commands. But you cannot do that without installing the dependencies in your local node_modules folder.
+
+That’s where npx comes in. A few of the use cases that make npx extremely helpful.
+
+1. Run a locally installed package easily
+2. Execute packages that are not previously installed
+
+● What is difference between `dependencies` vs `devDependencies`
+
+A. The difference between these two, is that devDependencies are modules which are only required during development, while dependencies are modules which are also required at runtime.
+
+● What is Tree Shaking?
+
+A. “Tree-shaking” is a must-have performance optimization when bundling JavaScript. Tree-shaking means removing unreachable code (also known as dead code) from a bundle.
+
+● What is Hot Module Replacement?
+
+A. Hot Module Replacement (HMR) exchanges, adds, or removes modules while an application is running, without a full reload. This can significantly speed up development in a few ways:
+
+Retain application state which is lost during a full reload.
+Save valuable development time by only updating what's changed.
+Instantly update the browser when modifications are made to CSS/JS in the source code, which is almost comparable to changing styles directly in the browser's dev tools.
+
+● List down your favourite 5 superpowers of Parcel and describe any 3 of them in your
+own words.
+
+A. Minify, Bundle, image optimization, cleaning our code, zero config
+minification: Minification improve loading time of the web page. It also decreases the size of a file and it can be used for any interpreted language. Ordering matters in case of Bundling, but it does not matter in case of Minification.
+For Minification of a javascript file we do the following things:
+
+Remove the white spaces from file(s).
+Remove line breaks to shorten file size.
+Remove final semicolon.
+Renaming local variable name and provide it a short name
+
+zero config: It offers blazing-fast performance utilizing multicore processing and requires zero configuration. The parcel does many tasks for your development process like minifying your files so that their size will be reduced in order to make your application faster and easy to deploy.
+
+cleaning our code: Cleaning our code or Tree shaking is removing unwanted code(like console logs) while code build which is easily handled by parcel itself during code bundling.
+
+● What is `.gitignore`? What should we add and not add into it?
+
+A. A gitignore file specifies intentionally untracked files that Git should ignore. Files already tracked by Git are not affected
+We should add files that we don't want git to track like node_modules.
+
+● What is the difference between `package.json` and `package-lock.json`
+
+A. package.json:
+
+This is a file usually found in packages. It contains meta-information about the package like versioning information, what the package is about, dependencies of the package, how to set up the package and so much more.
+Properties of package.json:
+
+name: The name of your package.
+
+description: The purpose of your package.
+
+main: The path to the default file which Node.js uses as a starting point for your package. In cases where your package is required without a path to a file (like this: require('package-name')), the main file is used.
+
+scripts: It contains a list of custom scripts which can be run with npm.
+
+dependencies: It contains dependencies which would be required by your package to work.
+
+devDependencies: It contains dependencies which are not required for your package to be used during production.
+You'd also notice the caret symbol (^) used in front of the dependencies' version numbers. This symbol signifies to npm that higher major versions of this package can be installed.
+
+package-lock.json:
+
+The common method of starting a package is npm init. After doing this, a package.json file is created. But when you install a package, you'd notice the package-lock.json file (usually very long) automatically created.
+You'll find this file a bit similar to package.json - holding some information about your file, but there's more to it. Remember the caret symbol in package.json dependencies? You could manually remove that symbol when you install a dependency, but that would be stressful.
+
+With package-lock.json, the versions of all dependencies your package would need are locked (-lock). This means when you run npm install on another system, npm checks this file to install the exact versions of the dependencies. If this file is absent, npm would then work with the caret symbol.
+
+This means that you should also commit package-lock.json to your source control.
+
+● Why should I not modify `package-lock.json`?
+
+A. It is a generated file and is not designed to be manually edited. Its purpose is to track the entire tree of dependencies (including dependencies of dependencies) and the exact version of each dependency. You should commit package-lock. json to your code repository.
+
+● What is `node_modules` ? Is it a good idea to push that on git?
+
+A. You can think of the node_modules folder like a cache for the external modules that your project depends upon. When you npm install them, they are downloaded from the web and copied into the node_modules folder and Node.js is trained to look for them there when you import them (without a specific path). The node_modules folder can be entirely recreated from scratch at any time by just reinstalling all the dependent modules (that should be listed in your project folders).
+
+This folder should not be pushed to git because there's no reason to store copies of all your dependent modules in your own GitHub project. The exact version you were using is known and stored in your package.json or package-lock.json so at any time you or anyone else using your project can download your code and then fetch all the other dependent modules from their original source.
+
+● What is the `dist` folder?
+
+A. The /dist folder contains the minimized version of the source code. The code present in the /dist folder is actually the code which is used on production web applications. Along with the minified code, the /dist folder also comprises of all the compiled modules that may or may not be used with other systems.
+
+● What is `browserlists`
+
+A. Browserslist is a tool that allows specifying which browsers should be supported in your frontend app by specifying "queries" in a config file.
+
+● difference between vite, parcel, webpack
+
+A. Because Webpack is a bundler-based build tool, it must crawl, process, and concatenate the whole JavaScript file to deliver your application. This applies to both your application code and your dependencies.
+
+The entire JavaScript bundle will then be rebuilt by Webpack when you save a file, which is why, even with HMR turned on, changes can take up to ten seconds to appear in the browser. Working on massive JavaScript applications will lead to a poor developer experience due to Webpack’s delayed feedback loop.
+    While a bundler-based workflow like Webpack will have to process your entire JavaScript modules before a single browser request, Vite only processes your dependency modules before a single browser request.
+        Parcel is a zero configuration web application bundler that is fast and easy to use.
+

@@ -1,0 +1,21 @@
+.title {
+  background-color: cadetblue;
+}
+.main {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+h1 {
+  margin: 10px;
+  font-size: 40px;
+  color: rgb(1, 1, 59);
+}
+
+.search {
+  width: 20rem;
+  background: #f0f0f0;
+  border: none;
+  padding: 0.5rem;
+}
