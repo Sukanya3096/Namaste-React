@@ -1,0 +1,979 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  background: #faf9fb;
+  overflow-x: hidden;
+}
+
+.App::-webkit-scrollbar {
+  display: none;
+}
+.pr {
+  padding-right: 2rem;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 15px;
+  height: 60px;
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  min-width: 40px;
+  width: 50px;
+}
+
+.inputBox {
+  background: #ffffff;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 8px 15px;
+  width: 120px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+}
+
+.inputBox .searchIcon {
+  color: #787a84;
+  font-size: 20px;
+}
+
+.inputBox input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: #787a84;
+  padding-left: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.shoppingCart {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shoppingCart .cart {
+  font-size: 30px;
+  color: #373848;
+}
+
+.shoppingCart .cart_content {
+  width: 20px;
+  height: 20px;
+  background: #f8901c;
+  border-radius: 100%;
+  min-width: 20px;
+  min-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: -8px;
+}
+
+.shoppingCart .cart_content p {
+  font-weight: 500;
+  color: #faf9fb;
+}
+
+.shoppingCart .noCartItem {
+  display: none;
+}
+
+.profileContainer {
+  display: flex;
+  align-items: center;
+}
+
+.profileContainer .imgBox {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.profileContainer .imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profileContainer .userName {
+  font-size: 16px;
+  margin-left: 8px;
+  font-weight: 500;
+  display: none;
+}
+
+.toggleMenu {
+  transform: rotate(90deg);
+}
+
+.toggleMenu .toggleIcon {
+  color: #373848;
+  font-size: 30px !important;
+}
+
+main {
+  width: 100%;
+  /* height: calc(100% - 60px); */
+  height: auto;
+  position: relative;
+  margin-top: 60px;
+}
+
+.leftMenu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background: #d5d5d5;
+  border-radius: 25px 25px 0px 0px;
+  z-index: 101;
+}
+
+.leftMenu ul {
+  display: flex;
+}
+
+.leftMenu ul li {
+  position: relative;
+  list-style: none;
+  width: 60px;
+  height: 60px;
+  z-index: 1;
+}
+
+.leftMenu ul li a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+
+.leftMenu ul li a .icon {
+  position: relative;
+  display: block;
+  line-height: 70px;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.leftMenu ul li a .icon .MuiSvgIcon-root {
+  font-size: 26px;
+  color: #373848;
+}
+
+.leftMenu ul li.active a .icon {
+  transform: translateY(-26px);
+}
+
+.leftMenu ul li.active a .icon .MuiSvgIcon-root {
+  color: #faf9fb;
+  transition: 0.5s;
+}
+
+.indicator {
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  background: #f8901c;
+  top: -50%;
+  border-radius: 50%;
+  border: 6px solid #faf9fb;
+  transition: 0.5s;
+}
+
+.indicator::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border-top-right-radius: 18px;
+  box-shadow: 0px -10px 0 0 #faf9fb;
+}
+
+.indicator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border-top-left-radius: 18px;
+  box-shadow: 0px -10px 0 0 #faf9fb;
+}
+
+.leftMenu ul li:nth-child(1).active ~ .indicator {
+  transform: translateX(calc(60px * 0));
+}
+
+.leftMenu ul li:nth-child(2).active ~ .indicator {
+  transform: translateX(calc(60px * 1));
+}
+
+.leftMenu ul li:nth-child(3).active ~ .indicator {
+  transform: translateX(calc(60px * 2));
+}
+
+.leftMenu ul li:nth-child(4).active ~ .indicator {
+  transform: translateX(calc(60px * 3));
+}
+
+.leftMenu ul li:nth-child(5).active ~ .indicator {
+  transform: translateX(calc(60px * 4));
+}
+
+.leftMenu ul li:nth-child(6).active ~ .indicator {
+  transform: translateX(calc(60px * 5));
+}
+
+/* Main Container */
+.mainContainer {
+  width: 100%;
+  height: auto;
+  background: #faf9fb;
+  padding: 10px;
+  padding-bottom: 100px;
+}
+
+.banner {
+  width: 100%;
+  height: 130px;
+  border-radius: 10px;
+  background: url("https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fbanner.png?alt=media&token=7e244d84-8821-477d-b273-4c9381a474fb")
+    no-repeat center;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.deliveryPic {
+  position: absolute;
+  right: -60px;
+  bottom: -10px;
+  width: 240px;
+}
+
+.bannerContent {
+  padding: 8px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.bannerContent h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #2a2b3c;
+}
+
+.bannerContent p {
+  font-size: 14px;
+  width: 200px;
+  color: #989594;
+  margin: 5px 0;
+}
+
+.bannerContent p span {
+  color: #f8901c;
+  font-weight: 500;
+}
+
+.bannerContent a {
+  background: #f8901c;
+  padding: 5px 15px;
+  border-radius: 100vw;
+  color: #faf9fb;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.bannerContent a:hover {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+  transition: 0.5s;
+}
+
+.dishContainer {
+  width: 100%;
+  padding: 10px 0;
+}
+
+.menuCard {
+  width: 100%;
+}
+
+.subMenuContianer,
+.viewAll {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subMenuContianer h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2a2b3c;
+}
+
+.subMenuContianer .viewAll p {
+  font-size: 12px;
+  color: #f8901c;
+  font-weight: 400;
+}
+
+.subMenuContianer .viewAll i {
+  background: #f8901c;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.subMenuContianer .viewAll i .MuiSvgIcon-root {
+  font-size: 16px !important;
+  color: #faf9fb;
+}
+
+.rowContainer {
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+.rowContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.rowMenuCard {
+  width: 80px;
+  min-width: 80px;
+  height: 100px;
+  border-radius: 10px;
+  background: #fff;
+  margin-right: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.rowMenuCard:hover,
+.rowMenuCard.active {
+  background: #f8901c;
+}
+
+.rowMenuCard .imgBox {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.rowMenuCard:hover .imgBox,
+.rowMenuCard.active .imgBox {
+  background: #faf9fb;
+}
+
+.rowMenuCard .imgBox img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.rowMenuCard:hover .imgBox img,
+.rowMenuCard.active .imgBox img {
+  width: 80%;
+  height: 80%;
+  transition: 0.5s;
+}
+
+.rowMenuCard h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #f8901c;
+  transition: 0.5s;
+}
+
+.rowMenuCard:hover h3,
+.rowMenuCard.active h3 {
+  color: #faf9fb;
+}
+
+.rowMenuCard .loadMenu {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background: #f8901c;
+  transition: 0.5s;
+}
+
+.rowMenuCard:hover .loadMenu,
+.rowMenuCard.active .loadMenu {
+  background: #faf9fb;
+}
+
+.rowMenuCard .loadMenu .MuiSvgIcon-root {
+  font-size: 14px !important;
+  color: #faf9fb;
+}
+
+.rowMenuCard:hover .loadMenu .MuiSvgIcon-root,
+.rowMenuCard.active .loadMenu .MuiSvgIcon-root {
+  color: #f8901c;
+}
+
+.dishItemContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.itemCard {
+  width: 160px;
+  height: 180px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.itemCard div:first-child:hover {
+  cursor: pointer;
+}
+
+.isFavourite {
+  position: absolute;
+  top: 80px;
+  right: 10px;
+  transition: 0.5s;
+}
+
+.isFavourite .MuiSvgIcon-root {
+  font-size: 18px;
+  color: #ff000088;
+}
+
+.isFavourite.active .MuiSvgIcon-root {
+  color: #ff0000;
+  filter: drop-shadow(0px 0px 8px #ff0000);
+}
+
+.itemCard .imgBox {
+  position: relative;
+  top: -25px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemCard .imgBox img {
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.itemImg {
+  width: 60%;
+  position: relative;
+  top: 0;
+}
+
+.itemContent {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  padding-top: 50px;
+  border-radius: 15px;
+}
+
+.itemContent .itemName {
+  font-size: 16px;
+}
+.itemContent .cuisine {
+  font-size: 12px;
+  color: gray;
+}
+
+.itemContent .bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemContent .bottom .rating .MuiSvgIcon-root {
+  font-size: 14px;
+}
+
+.itemContent .bottom .price {
+  font-size: 16px;
+}
+
+.itemContent .bottom .price span {
+  color: #f8901c;
+  font-size: 12px;
+}
+
+.itemContent .addToCart {
+  background: #f8901c;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.itemContent .addToCart .MuiSvgIcon-root {
+  color: #faf9fb;
+  font-size: 16px;
+}
+
+.orange {
+  color: #f8901c !important;
+}
+
+.gray {
+  color: #373848 !important;
+}
+
+.rightMenu {
+  width: 350px;
+  height: calc(100% - 55px);
+  background: #fff;
+  position: fixed;
+  right: 0;
+  top: 55px;
+  z-index: 105;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  transform: translateX(200%);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
+}
+
+.rightMenu.active {
+  transform: translateX(0%);
+}
+
+.debitCardContainer {
+  padding: 10px;
+  width: 100%;
+  height: auto;
+}
+
+.debitCard {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  min-width: 300px;
+  min-height: 170px;
+  border-radius: 15px;
+}
+
+.debitCard::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f8901c;
+  transform: rotate(5deg);
+  border-radius: 15px;
+  filter: blur(2px);
+  z-index: -2;
+}
+
+.debitCard::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    35deg,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.cardGroup {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.cardLogo,
+.cardChip,
+.card_number,
+.card_name,
+.card_from,
+.card_to,
+.card_ring {
+  position: absolute;
+}
+
+.cardLogo {
+  width: 60px;
+  top: 30px;
+  right: 30px;
+  height: auto;
+}
+
+.cardChip {
+  width: 40px;
+  top: 50px;
+  left: 30px;
+  height: auto;
+}
+
+.card_number,
+.card_from,
+.card_to,
+.card_name {
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.card_number {
+  left: 30px;
+  bottom: 60px;
+}
+
+.card_name {
+  font-size: 12px;
+  bottom: 30px;
+  left: 30px;
+}
+
+.card_from {
+  font-size: 12px;
+  bottom: 30px;
+  right: 90px;
+}
+
+.card_to {
+  bottom: 30px;
+  right: 30px;
+  font-size: 12px;
+}
+
+.card_ring {
+  height: 400px;
+  width: 400px;
+  border-radius: 100vw;
+  background: transparent;
+  border: 50px solid rgba(0, 0, 0, 0.1);
+  top: -250px;
+  right: -250px;
+  box-sizing: border-box;
+}
+
+.card_ring::after {
+  content: "";
+  position: absolute;
+  height: 500px;
+  width: 500px;
+  border-radius: 100vw;
+  background: transparent;
+  border: 50px solid rgba(0, 0, 0, 0.1);
+  bottom: -415px;
+  right: -155px;
+  box-sizing: border-box;
+}
+
+.cartContainer {
+  width: 100%;
+  flex: 1;
+  min-width: 320px;
+  padding: 0px 10px;
+  margin-top: 10px;
+}
+
+.cartItems {
+  width: 100%;
+  min-height: 280px;
+  max-height: 320px;
+  margin-top: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.cartItems::-webkit-scrollbar {
+  display: none;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.cartItem .imgBox {
+  width: 60px;
+  min-width: 60px;
+  height: 60px;
+  min-height: 60px;
+  background: #00ffc855;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.cartItem .imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cartItem .itemSection {
+  margin-left: 10px;
+}
+
+.cartItem .itemSection .itemName {
+  font-size: 16px;
+  color: #2a2b3c;
+}
+
+.cartItem .itemSection .itemQuantity {
+  font-size: 16px;
+  color: #2a2b3c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.cartItem .itemSection .itemQuantity span {
+  color: #f8901c;
+}
+
+.cartItem .itemSection .itemQuantity .quantity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 60px;
+}
+
+.cartItem .itemSection .itemQuantity .quantity .itemRemove {
+  color: #2a2b3c;
+  font-size: 24px;
+}
+
+.cartItem .itemSection .itemQuantity .quantity .itemAdd {
+  color: #2a2b3c;
+  font-size: 24px;
+}
+
+.cartItem .itemPrice {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2a2b3c;
+  margin-left: auto;
+}
+
+.cartItem .itemPrice .dolorSign {
+  font-size: 12px;
+  color: #f8901c;
+}
+
+.cartItem .itemPrice .itemPriceValue {
+  font-size: 16px;
+  color: #373848;
+}
+
+.totalSection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  margin: 15px 0px;
+}
+
+.totalSection h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2a2b3c;
+}
+
+.totalSection p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2a2b3c;
+}
+
+.totalSection p span {
+  font-size: 14px;
+  color: #f8901c;
+}
+
+.checkOut {
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 10px 20px;
+  background: #f8901c;
+  border-radius: 100vw;
+  color: #faf9fb;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.addSomeItem {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 650px) {
+  .rowContainer {
+    justify-content: space-between;
+  }
+
+  .inputBox {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .toggleMenu {
+    display: none;
+  }
+
+  .profileContainer .userName {
+    display: block;
+  }
+
+  .leftMenu {
+    left: 21%;
+    width: 40%;
+  }
+
+  .mainContainer {
+    width: 100%;
+  }
+  .banner {
+    height: 160px;
+  }
+
+  .deliveryPic {
+    bottom: -13px;
+    width: 278px;
+  }
+
+  .bannerContent h3 {
+    font-size: 24px;
+  }
+
+  .bannerContent p {
+    font-size: 15px;
+    margin: 12px 0;
+    width: unset;
+  }
+
+  .bannerContent a {
+    font-size: 16px;
+  }
+
+  main {
+    display: flex;
+  }
+  .mainContainer {
+    padding: 10px 30px;
+  }
+  .rightMenu {
+    position: fixed;
+    z-index: 1;
+    transform: translateX(0%);
+    top: unset;
+    padding: 20px 15px;
+  }
+  .itemCard {
+    width: 300px;
+    height: 300px;
+  }
+}
