@@ -9,7 +9,9 @@ export default Body = () => {
         <div className="dishContainer">
           <div className="dishItemContainer">
             {restaurantList.map((restuarant) => {
-              return <Restuarant {...restuarant.data} />;
+              return (
+                <Restuarant {...restuarant.data} key={restuarant.data.id} />
+              );
             })}
           </div>
         </div>

@@ -3,7 +3,6 @@ import { AddRounded, Favorite, StarRounded } from "@mui/icons-material";
 import React, { useState } from "react";
 
 export default Restaurant = ({
-  id,
   name,
   cuisines,
   cloudinaryImageId,
@@ -16,7 +15,7 @@ export default Restaurant = ({
   );
 
   return (
-    <div className="itemCard" id={id}>
+    <div className="itemCard">
       <div className="itemContent">
         <div className="imgBox">
           <img
