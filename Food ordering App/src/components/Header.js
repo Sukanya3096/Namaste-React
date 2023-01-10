@@ -8,8 +8,14 @@ import {
 import IconButton from "@mui/material/IconButton";
 import React, { useState } from "react";
 
-const Header = () => {
+const Header = (props) => {
   const [cart, setCart] = useState();
+  const [searchText, setSearchText] = useState("");
+
+  const searchHandler = (text) => {
+    setSearchText(text.target.value);
+    props.onSearch(text.target.value);
+  };
   return (
     <header>
       <img
@@ -20,7 +26,12 @@ const Header = () => {
 
       <div className="inputBox">
         <SearchRounded className="searchIcon" />
-        <input type="text" placeholder="Search" />
+        <input
+          type="text"
+          value={searchText}
+          placeholder="Search"
+          onChange={searchHandler}
+        />
       </div>
 
       <div className="shoppingCart">

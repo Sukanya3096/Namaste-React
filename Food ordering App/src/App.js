@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import "../App.css";
 import Body from "./components/Body";
+import { restaurantList } from "./constants";
 
 const AppLayout = () => {
+  const [searchText, setSearchText] = useState();
+
+  searchTextFn = (text) => {
+    setSearchText(text);
+  };
   return (
     <div className="App">
-      <Header />
-      <Body />
+      <Header onSearch={searchTextFn} />
+      <Body searchText={searchText} />
     </div>
   );
 };
