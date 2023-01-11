@@ -1,0 +1,176 @@
+1. What is the difference between Named export, Default export and * as export?
+
+A. Named Export
+The easiest way to export function is to simply add export in front of it:
+
+// user.js
+
+export const fetchUsers = () => {
+  ...
+};
+Basically everything can be exported - functions, var, let, const and event classes.
+
+The only thing we should remember is that the exported items must be top-level items, you can not export anything within the function
+A more convenient way is to combine all exports at the end of the file:
+
+// user.js
+
+const fetchUsers = () => {
+  ...
+};
+
+const transformUsers = () => {
+  ...
+};
+  
+const getAdminUsers = () => {
+  ...
+};
+  
+export { fetchUsers, transformUsers, getAdminUsers };
+
+--------------------------------------------------------------------------------------------------------
+
+Default Export
+There is another type of export that is only allowed once per file - default export:
+
+// project.js
+
+export default () => {
+  ...
+};
+Or alternative syntax:
+
+// project.js
+
+const fetchProjects = () => {
+  ...
+};
+  
+export default fetchProjects;
+--------------------------------------------------------------------------------------------------------
+Combining Both Approaches
+It is also possible to combine both approaches in the single file:
+
+// user.js
+
+const fetchUsers = () => {
+  ...
+};
+
+export const transformUsers = () => {
+  ...
+};
+  
+export const getAdminUsers = () => {
+  ...
+};
+  
+export { transformUsers, getAdminUsers };
+export default fetchUsers;
+--------------------------------------------------------------------------------------------------------
+Sometimes a module can export dozens of functions and you can import them all by using an asterisk (*):
+
+import * as userFunctions from "./users";
+
+// All exported functions are available under "userFunctions"
+// Example: "userFunctions.fetchUsers()"
+This type of import creates a module object that grabs all exports and makes them available as members of a userFunctions object.
+
+2. What is the importance of config.js file?
+
+A. Config.js allows developers to configure their applications in an XML block instead of hard-coding values inside their scripts or in JSON objects.
+Configuration files help developers store the data their applications need and help users store preferences for how they want applications to act. There's probably no wrong answer to the question of what format you should use, as long as you feel well supported by the language you're using. When developing your application, look at the formats available, model some sample data, review and evaluate the libraries and utilities your programming language provides, and choose the one you feel the most confident about.
+
+3. What are react hooks?
+
+A. Hooks allow you to use React features by calling special hook functions from within function components. 
+
+Before Hooks, React functional and class components performed distinct functions. Functional components were only used for presentation purposes—to render data to the UI. They could only receive and render props from parent components, which were usually class components. Functional components did not keep track of an internal state and did not know the component lifecycle. Thus, they were referred to as “dumb components.”
+
+Class components, on the other hand, track a component's internal state and enable you to perform operations during each phase by using lifecycle methods. For example, you can fetch data from an external API once a component mounts, update the state due to user interactivity, and unsubscribe from a store once a component unmounts.
+
+Challenges of React Class Components:
+
+1. Autobinding and Working with this
+2. Verbose Syntax
+3. Difficult to Reuse and Share Logic
+
+Hooks solve all of the class-related problems listed above. 
+a. The useState Hook
+The useState Hook gives you an easy way to use state in a functional component. It also takes one argument (the initial state) and returns an array with two values: the current state and a function to update the state. By convention, these values are stored using array destructuring.
+
+Here is the function signature of the useState Hook: jsx
+const [state, setState] = useState(initialState); 
+
+b. The useEffect Hook
+The useEffect Hook gives you an easier way to hook into a component lifecycle without writing redundant logic like you do in class components.
+
+Consider the code below:
+
+useEffect(() => {
+    // Mounting
+
+    return () => {
+        // Unmounting 
+    }
+}, [
+    // Updating
+])
+The function signature of the useEffect Hook is in the code. It takes two arguments: a function that is called after each complete render and an array.
+
+The function passed to the useEffect Hook contains the logic that executes side effects. If you want to do a clean up, as you do with componentWillUnmount in a class component, return a function from this that is passed to the useEffect Hook.
+
+Lastly, the array in the second argument holds a list of dependencies used for updating the component.
+
+4. Why do we need useState hook?
+
+A. What will happen if we don't use the useState hook in react?
+Let's take an example, suppose we want to create a counter button that increments itself by one.
+
+Without useState
+
+In the below code if one tries to increment the counter by clicking on the button the count will not change because the react rendered the component only once and since there is no state change it won't get re-rendered, the count will remain at 0 on-screen.
+By console.log one can see that the count is incrementing on click.
+import React from "react";
+
+export default function MyComponent() {
+  let count = 0;
+  const setCount = () => {
+  count++;
+  console.log(count);
+   }
+  return (
+    <div>
+      <label>{count}</label>
+      <hr/>
+      <label>Counter</label>
+      <button onClick = {setCount}>{count}</button>
+    </div>
+  );
+}
+
+With useState
+
+In the below code if one tries to increment the counter by clicking on the button the count will change because the react rendered the component once when it got mounted and since there is state change it will get re-rendered, the count will get incremented on-screen.
+import React, { useState } from "react";
+
+export default function MyComponent() {
+const[count, setCount] = useState(0);
+
+return (
+    <div>
+      <label>{count}</label>
+      <hr/>
+      <label>Counter</label>
+      <button onClick = {() => {
+        setCount(count + 1);
+      }}>{count}</button>
+    </div>
+  );
+}
+
+One can always directly manipulate the DOM and increment the counter on-screen as well, but then there is no point in using react.
+
+
+
