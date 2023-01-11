@@ -77,10 +77,14 @@ import * as userFunctions from "./users";
 // Example: "userFunctions.fetchUsers()"
 This type of import creates a module object that grabs all exports and makes them available as members of a userFunctions object.
 
+````````````````````````````````````````````````````````````````````````````````````````````````````````
+
 2. What is the importance of config.js file?
 
 A. Config.js allows developers to configure their applications in an XML block instead of hard-coding values inside their scripts or in JSON objects.
 Configuration files help developers store the data their applications need and help users store preferences for how they want applications to act. There's probably no wrong answer to the question of what format you should use, as long as you feel well supported by the language you're using. When developing your application, look at the formats available, model some sample data, review and evaluate the libraries and utilities your programming language provides, and choose the one you feel the most confident about.
+
+````````````````````````````````````````````````````````````````````````````````````````````````````````
 
 3. What are react hooks?
 
@@ -122,6 +126,8 @@ The function signature of the useEffect Hook is in the code. It takes two argume
 The function passed to the useEffect Hook contains the logic that executes side effects. If you want to do a clean up, as you do with componentWillUnmount in a class component, return a function from this that is passed to the useEffect Hook.
 
 Lastly, the array in the second argument holds a list of dependencies used for updating the component.
+
+````````````````````````````````````````````````````````````````````````````````````````````````````````
 
 4. Why do we need useState hook?
 
@@ -172,5 +178,4 @@ return (
 
 One can always directly manipulate the DOM and increment the counter on-screen as well, but then there is no point in using react.
 
-
-
+````````````````````````````````````````````````````````````````````````````````````````````````````````

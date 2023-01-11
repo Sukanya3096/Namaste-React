@@ -11,6 +11,8 @@ React embraces the fact that rendering logic is inherently coupled with other UI
 Instead of artificially separating technologies by putting markup and logic in separate files, React separates concerns with loosely coupled units called “components” that contain both. 
 React doesn’t require using JSX, but most people find it helpful as a visual aid when working with UI inside the JavaScript code. It also allows React to show more useful error and warning messages.
 
+````````````````````````````````````````````````````````````````````````````````````````````````````````
+
 React.createElement vs JSX:
 
 We would use React.createElement() instead of JSX when we do not want to set up compilation for our project, which the use of JSX requires!
@@ -23,6 +25,8 @@ const h1 = React.createElement(
   "Hello, world"
 );
 
+````````````````````````````````````````````````````````````````````````````````````````````````````````
+
 Benefits of JSX:
 
 JSX has the following advantages:
@@ -32,6 +36,8 @@ According to the React docs, most people find it helpful as a visual aid when wo
 JSX also allows React to show more useful error and warning messages.
 If one is familiar with HTML, it is quite easy to use JSX when building React application
 Faster than normal JavaScript as it performs optimizations while translating to regular JavaScript.
+
+````````````````````````````````````````````````````````````````````````````````````````````````````````
 
 Behind the scenes of JSX:
 
@@ -151,21 +157,31 @@ React.createElement() function in the example above would return an object like 
 JavaScript
 These objects are known as React elements, but they are just plain JavaScript objects. They describe what you want to see on the screen. They represent HTML elements, and they do not live on the page (the “real” DOM)—they live on the virtual DOM. React reads these objects and uses them to create HTML elements on the virtual DOM, after which it gets synced with the real DOM.
 
+````````````````````````````````````````````````````````````````````````````````````````````````````````
+
 
 babel and parcel role in JSX:
 
 Because JSX is not valid JavaScript, browsers can’t read it directly; they do not know what to do with it, so we need a transpiler to translate it to React.createElement() calls. We need transpilers (a compiler that translates one form of syntax into another) like Babel or TypeScript to compile JSX into a browser-compatible version. Parcel has babel as dependency which helps to convert JSX to browser readable javascript code.
 
+````````````````````````````````````````````````````````````````````````````````````````````````````````
+
 Components in React:
 
 A Component is one of the core building blocks of React. In other words, we can say that every application you will develop in React will be made up of pieces called components. Components make the task of building UIs much easier. You can see a UI broken down into multiple individual pieces called components and work on them independently and merge them all in a parent component which will be your final UI. 
 
+````````````````````````````````````````````````````````````````````````````````````````````````````````
+
 Functional components in React:
 
 A Component is one of the core building blocks of React. In other words, we can say that every application you will develop in React will be made up of pieces called components. Components make the task of building UIs much easier. You can see a UI broken down into multiple individual pieces called components and work on them independently and merge them all in a parent component which will be your final UI. 
+
+````````````````````````````````````````````````````````````````````````````````````````````````````````
 
 Component Composition in React:
 
 In React, we can make components more generic by accepting props, which are to React components what parameters are to functions.
 
 Component composition is the name for passing components as props to other components, thus creating new components with other components.
+
+````````````````````````````````````````````````````````````````````````````````````````````````````````
