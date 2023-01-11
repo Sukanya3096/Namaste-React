@@ -11,6 +11,7 @@ const AppLayout = () => {
   searchTextFn = (text) => {
     setSearchText(text);
   };
+
   return (
     <div className="App">
       <Header onSearch={searchTextFn} />
