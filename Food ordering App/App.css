@@ -500,6 +500,15 @@ main {
   align-items: center;
   margin: 10px 0;
 }
+.active > .page-link,
+.page-link.active {
+  background-color: #f8901c;
+  border-color: #f8901c;
+}
+
+.page-link {
+  color: #f8901c;
+}
 
 .itemCard div:first-child:hover {
   cursor: pointer;
