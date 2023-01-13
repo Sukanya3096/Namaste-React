@@ -1,3 +1,4 @@
+@import "autocomplete.css";
 .App {
   width: 100vw;
   height: 100vh;
@@ -12,6 +13,41 @@
   padding-right: 2rem;
 }
 
+.input-block {
+  border: 1px solid #d4d5d9;
+  padding: 0;
+  display: block;
+  position: relative;
+  transform: translateZ(0);
+}
+
+.input-1 {
+  height: 50px;
+  padding-top: 0;
+  font-size: 1.15rem;
+}
+.input-2 {
+  padding-right: 72px;
+}
+.input-3 {
+  background-color: transparent;
+  line-height: normal;
+  border: none;
+  outline: none;
+  height: 70px;
+  width: 100%;
+  font-size: 17px;
+  margin: 0;
+  padding: 0 20px;
+  padding-top: 22px;
+  box-shadow: none;
+  box-sizing: border-box;
+  border-radius: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
 header {
   display: flex;
   align-items: center;

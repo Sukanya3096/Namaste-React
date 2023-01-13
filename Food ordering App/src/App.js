@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "../App.css";
 import Body from "./components/Body";
-import { restaurantList } from "./constants";
 
 const AppLayout = () => {
   const [searchText, setSearchText] = useState();

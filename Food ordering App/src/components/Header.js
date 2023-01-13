@@ -4,21 +4,28 @@ import {
   RingVolumeOutlined,
   SearchRounded,
   ShoppingCartRounded,
+  KeyboardArrowDown,
 } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
 import restuarant from "../../../Food ordering App/images/restuarant.png";
 import { GOOGLE_API_KEY } from "../constants";
 import Geocode from "react-geocode";
+import { Sidebar } from "./Sidebar";
 
 const Header = (props) => {
   const [cart, setCart] = useState();
   const [searchText, setSearchText] = useState("");
   const [address, setAddress] = useState("");
+  const [sidebarFlag, setSidebarFlag] = useState(false);
 
   const searchHandler = (text) => {
     setSearchText(text.target.value);
     props.onSearch(text.target.value);
+  };
+
+  const sidebarHandler = () => {
+    setSidebarFlag(!sidebarFlag);
   };
 
   useEffect(() => {
@@ -69,8 +76,19 @@ const Header = (props) => {
 
   return (
     <header>
+      <Sidebar
+        placement="start"
+        name="start"
+        flag={sidebarFlag}
+        addressChange={setAddress}
+      />
       <img src={restuarant} alt="" className="logo" />
-      <span className="address">{address}</span>
+      <span className="address">
+        {address}{" "}
+        <span onClick={sidebarHandler}>
+          <KeyboardArrowDown />
+        </span>
+      </span>
 
       <div className="inputBox">
         <SearchRounded className="searchIcon" />
