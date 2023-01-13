@@ -7,6 +7,7 @@ import {
 } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import React, { useState } from "react";
+import restuarant from "../../../Food ordering App/images/restuarant.png";
 
 const Header = (props) => {
   const [cart, setCart] = useState();
@@ -18,11 +19,7 @@ const Header = (props) => {
   };
   return (
     <header>
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Flogo.png?alt=media&token=fc228623-ef27-4af4-8ea5-b9ebeeaf47dc"
-        alt=""
-        className="logo"
-      />
+      <img src={restuarant} alt="" className="logo" />
 
       <div className="inputBox">
         <SearchRounded className="searchIcon" />
