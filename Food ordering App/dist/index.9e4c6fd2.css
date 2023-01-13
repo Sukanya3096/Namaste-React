@@ -13015,4 +13015,13 @@ main {
   }
 }
 
+.address {
+  color: #686b78;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  display: block;
+  overflow: hidden;
+}
+
 /*# sourceMappingURL=index.9e4c6fd2.css.map */

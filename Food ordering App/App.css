@@ -986,3 +986,11 @@ main {
     height: 300px;
   }
 }
+.address {
+  display: block;
+  color: #686b78;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 14px;
+}
