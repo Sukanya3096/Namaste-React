@@ -24,7 +24,7 @@ export const Sidebar = (props) => {
     <>
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>Delivery At?</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <PlacesAutoComplete

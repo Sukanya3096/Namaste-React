@@ -43,7 +43,7 @@ export default Restaurant = ({
                 <StarRounded />
               </i>
             ))}
-            <h5>{costForTwoString}</h5>
+            <div>{costForTwoString}</div>
           </div>
           <i
             className="addToCart"
