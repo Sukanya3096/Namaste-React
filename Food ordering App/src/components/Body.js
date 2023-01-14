@@ -4,36 +4,39 @@ import Pagination from "./Pagination";
 import { restaurantList } from "../constants";
 
 export default Body = (props) => {
-  const [restuarants, setRestuarants] = useState(restaurantList);
+  const [filteredRestuarants, setFilteredRestuarants] =
+    useState(restaurantList);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(8);
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = restuarants.slice(
+  const currentRecords = filteredRestuarants.slice(
     indexOfFirstRecord,
     indexOfLastRecord
   );
-  const nPages = Math.ceil(restuarants.length / recordsPerPage);
+  const nPages = Math.ceil(filteredRestuarants.length / recordsPerPage);
   const isLastPage =
     currentRecords.length !== recordsPerPage ||
-    indexOfLastRecord === restuarants.length;
+    indexOfLastRecord === filteredRestuarants.length;
 
   useEffect(() => {
     let identifier;
     if (props.searchText) {
       identifier = setTimeout(() => {
         (() => {
-          const filteredData = restuarants.filter((restuarant) => {
+          const filteredData = restaurantList.filter((restuarant) => {
             return restuarant.data.name
               .toLowerCase()
               .includes(props.searchText?.toLowerCase());
           });
-          setRestuarants(filteredData);
+          setFilteredRestuarants(filteredData);
+          setCurrentPage(1);
         })();
       }, 500);
     } else {
-      setRestuarants(restaurantList);
+      setFilteredRestuarants(restaurantList);
+      setCurrentPage(1);
     }
 
     return () => {
