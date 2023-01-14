@@ -20,8 +20,12 @@ const Header = (props) => {
   const [sidebarFlag, setSidebarFlag] = useState(false);
 
   const searchHandler = (text) => {
+    let identifier;
+    clearTimeout(identifier);
+    identifier = setTimeout(() => {
+      props.onSearch(text.target.value);
+    }, 1000);
     setSearchText(text.target.value);
-    props.onSearch(text.target.value);
   };
 
   const sidebarHandler = () => {
