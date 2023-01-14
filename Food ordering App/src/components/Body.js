@@ -2,6 +2,7 @@ import Restuarant from "./Restuarant";
 import React, { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import { restaurantList } from "../constants";
+import { ShimmerSimpleGallery } from "react-shimmer-effects";
 
 export default Body = (props) => {
   const [filteredRestuarants, setFilteredRestuarants] = useState();
@@ -21,7 +22,6 @@ export default Body = (props) => {
     indexOfLastRecord === filteredRestuarants.length;
 
   useEffect(() => {
-    let identifier;
     getRestuarants().then((response) => {
       if (props.searchText && props.searchText !== "") {
         const filteredData = response.filter((restuarant) => {
@@ -56,7 +56,7 @@ export default Body = (props) => {
                 );
               })
             ) : (
-              <div>Loading...</div>
+              <ShimmerSimpleGallery card imageHeight={200} caption />
             )}
           </div>
           <Pagination
