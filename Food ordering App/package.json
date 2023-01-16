@@ -38,7 +38,9 @@
     "react-dom": "^18.2.0",
     "react-geocode": "^0.2.3",
     "react-icons": "^4.7.1",
-    "react-places-autocomplete": "^7.3.0"
+    "react-places-autocomplete": "^7.3.0",
+    "react-router-dom": "^6.6.2",
+    "react-shimmer-effects": "^1.0.2"
   },
   "browsersList": [
     "last 6 versions"

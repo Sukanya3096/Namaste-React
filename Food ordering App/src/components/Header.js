@@ -9,9 +9,10 @@ import {
 import IconButton from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
 import restuarant from "../../../Food ordering App/images/restuarant.png";
-import { GOOGLE_API_KEY } from "../constants";
+import { GET_COORDS, GOOGLE_API_KEY } from "../constants";
 import Geocode from "react-geocode";
 import { Sidebar } from "./Sidebar";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const [cart, setCart] = useState();
@@ -37,6 +38,20 @@ const Header = (props) => {
       codeLatLng(position.coords.latitude, position.coords.longitude);
     });
   }, []);
+
+  useEffect(() => {
+    getCoordsFromAddr(address).then((res) => {
+      props.onCoords(res?.lat, res?.lng);
+    });
+  }, [address]);
+
+  async function getCoordsFromAddr(addr) {
+    const coords = await fetch(
+      `${GET_COORDS}${addr}&key=${GOOGLE_API_KEY}`
+    ).then((response) => response.json());
+
+    return coords.results[0]?.geometry.location;
+  }
 
   function codeLatLng(lat, lng) {
     Geocode.setApiKey(GOOGLE_API_KEY); // USE YOUR GOOGLE API KEY!
@@ -113,14 +128,18 @@ const Header = (props) => {
 
       <div className="profileContainer">
         <div className="pr">
-          <IconButton aria-label="home">
-            <OtherHousesOutlined />
-          </IconButton>
+          <Link to="/">
+            <IconButton aria-label="home">
+              <OtherHousesOutlined />
+            </IconButton>
+          </Link>
         </div>
 
-        <IconButton aria-label="home">
-          <RingVolumeOutlined />
-        </IconButton>
+        <Link to="/contact">
+          <IconButton aria-label="home">
+            <RingVolumeOutlined />
+          </IconButton>
+        </Link>
       </div>
 
       <div className="toggleMenu">

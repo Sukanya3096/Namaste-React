@@ -13,8 +13,11 @@ export const Sidebar = (props) => {
   };
 
   const handleSelect = (value) => {
-    setAddress(value);
-    props.addressChange(value);
+    const formatted_addr = value.split(",").filter((el, i) => {
+      return ![1, 2, 3].includes(i);
+    });
+    setAddress(formatted_addr.join(","));
+    props.addressChange(formatted_addr.join(","));
   };
 
   useEffect(() => {
@@ -71,13 +74,11 @@ export const Sidebar = (props) => {
                             {...getSuggestionItemProps(suggestion, {
                               className,
                             })}
+                            key={suggestion.placeId}
                           >
                             <strong>
                               {suggestion.formattedSuggestion.mainText}
                             </strong>{" "}
-                            <small>
-                              {suggestion.formattedSuggestion.secondaryText}
-                            </small>
                           </div>
                         );
                         /* eslint-enable react/jsx-key */
