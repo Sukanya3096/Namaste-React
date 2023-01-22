@@ -5,6 +5,7 @@ import {
   SearchRounded,
   ShoppingCartRounded,
   KeyboardArrowDown,
+  LocationCityRounded,
 } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
@@ -40,9 +41,11 @@ const Header = (props) => {
   }, []);
 
   useEffect(() => {
-    getCoordsFromAddr(address).then((res) => {
-      props.onCoords(res?.lat, res?.lng);
-    });
+    if (address !== "") {
+      getCoordsFromAddr(address).then((res) => {
+        props.onCoords(res?.lat, res?.lng);
+      });
+    }
   }, [address]);
 
   async function getCoordsFromAddr(addr) {
@@ -85,6 +88,7 @@ const Header = (props) => {
             }
           }
         }
+        console.log(city, state);
         setAddress(`${city}, ${state} ${zip}, ${country}`);
       },
       (error) => {

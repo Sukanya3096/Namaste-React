@@ -4,6 +4,7 @@ import Pagination from "./Pagination";
 import { RESTUARANT_FETCH_URL, FETCH_TYPE } from "../constants";
 import { ShimmerSimpleGallery } from "react-shimmer-effects";
 import { useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default Body = (props) => {
   const [searchText, getLat, getLng] = useOutletContext();
@@ -30,7 +31,7 @@ export default Body = (props) => {
         const filteredData = response.filter((restuarant) => {
           return restuarant.data.name
             .toLowerCase()
-            .includes(props.searchText?.toLowerCase());
+            .includes(searchText?.toLowerCase());
         });
         setFilteredRestuarants(filteredData);
         setCurrentPage(1);
@@ -58,7 +59,9 @@ export default Body = (props) => {
       })
       .catch((err) => console.log(err));
 
-    return restuarant ? restuarant[0].data.data.cards : restuarant;
+    return restuarant && restuarant.length > 0
+      ? restuarant[0].data.data.cards
+      : restuarant;
   }
 
   return (
@@ -66,12 +69,19 @@ export default Body = (props) => {
       <div className="mainContainer">
         <div className="dishContainer">
           <div className="dishItemContainer">
-            {filteredRestuarants ? (
+            {filteredRestuarants && filteredRestuarants.length > 0 ? (
               currentRecords.map((restuarant) => {
                 return (
-                  <Restuarant {...restuarant.data} key={restuarant.data.id} />
+                  <Link
+                    to={"/restuarant/" + restuarant.data.id}
+                    key={restuarant.data.id}
+                  >
+                    <Restuarant {...restuarant.data} />
+                  </Link>
                 );
               })
+            ) : filteredRestuarants && filteredRestuarants.length === 0 ? (
+              <div>Currently no restaurants available </div>
             ) : (
               <ShimmerSimpleGallery card imageHeight={200} caption />
             )}

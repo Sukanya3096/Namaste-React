@@ -8,38 +8,38 @@ const Footer = () => {
 
   return (
     <footer>
-      <div class="container">
-        <div class="row text-center">
-          <div class="col-md-4 box">
-            <span class="copyright quick-links">
+      <div className="container">
+        <div className="row text-center">
+          <div className="col-md-4 box">
+            <span className="copyright quick-links">
               Copyright &copy; Hungry Panda {year}
             </span>
           </div>
-          <div class="col-md-4 box">
-            <ul class="list-inline social-buttons">
-              <li class="list-inline-item">
+          <div className="col-md-4 box">
+            <ul className="list-inline social-buttons">
+              <li className="list-inline-item">
                 <a href="#">
                   <TwitterIcon />
                 </a>
               </li>
-              <li class="list-inline-item">
+              <li className="list-inline-item">
                 <a href="#">
                   <FacebookIcon />
                 </a>
               </li>
-              <li class="list-inline-item">
+              <li className="list-inline-item">
                 <a href="#">
                   <LinkedInIcon />
                 </a>
               </li>
             </ul>
           </div>
-          <div class="col-md-4 box">
-            <ul class="list-inline quick-links">
-              <li class="list-inline-item">
+          <div className="col-md-4 box">
+            <ul className="list-inline quick-links">
+              <li className="list-inline-item">
                 <a href="#">Privacy Policy</a>
               </li>
-              <li class="list-inline-item">
+              <li className="list-inline-item">
                 <a href="#">Terms of Use</a>
               </li>
             </ul>
