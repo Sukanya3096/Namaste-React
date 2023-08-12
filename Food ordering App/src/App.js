@@ -24,7 +24,9 @@ export const AppLayout = () => {
   return (
     <div className="App">
       <Header onSearch={searchTextFn} onCoords={getLatLngFxn} />
-      <Outlet context={[searchText, getLat, getLng]} />
+      <div className="main">
+        <Outlet context={[searchText, getLat, getLng]} />
+      </div>
       <Footer />
     </div>
   );

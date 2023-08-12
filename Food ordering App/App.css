@@ -5,9 +5,11 @@
 @import "menu.css";
 .App {
   width: 100vw;
-  height: 100vh;
   background: #faf9fb;
   overflow-x: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
 }
 
 .App::-webkit-scrollbar {
@@ -23,6 +25,9 @@
   display: block;
   position: relative;
   transform: translateZ(0);
+}
+.main {
+  flex-grow: 1;
 }
 
 .input-1 {
