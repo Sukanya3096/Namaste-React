@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 
 export default Body = (props) => {
   const [searchText, getLat, getLng] = useOutletContext();
-  const [listOfRestuarants, setListOfRestuarants] = useState();
-  const [filteredRestuarants, setFilteredRestuarants] = useState();
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredRestuarants, setFilteredRestaurants] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   // Define the number of records to display per page
   const [recordsPerPage] = useState(8);
@@ -41,7 +41,7 @@ export default Body = (props) => {
     // Call the getRestuarants function to fetch the restaurants.
     getRestuarants().then((response) => {
       // Update the filtered restaurants state with the filtered data.
-      setListOfRestuarants(response);
+      setListOfRestaurants(response);
 
       // Reset the current page to 1.
       setCurrentPage(1);
