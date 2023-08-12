@@ -40,6 +40,7 @@
     "react-icons": "^4.7.1",
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^6.6.2",
+    "react-shimmer-effect": "^1.0.9",
     "react-shimmer-effects": "^1.0.2"
   },
   "browsersList": [
