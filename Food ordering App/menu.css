@@ -2,7 +2,7 @@
   padding: 80px 0;
 }
 
-.restuarant {
+.restaurant {
   position: sticky;
   top: 0;
   z-index: 2;
@@ -10,7 +10,7 @@
   pointer-events: none;
 }
 
-.restuarant__container {
+.restaurant__container {
   background-color: #171a29;
   color: #fff;
   height: 245px;
@@ -23,7 +23,7 @@
   padding: 0 20px;
 }
 
-.restuarant__container__pos {
+.restaurant__container__pos {
   transform-origin: left top;
   transform: scaleX(1);
   transition: transform 0.2s ease-in-out;
@@ -36,7 +36,7 @@
   margin: 0 auto;
 }
 
-.restuarant__imageContainer {
+.restaurant__imageContainer {
   width: 254px;
   max-width: 254px;
   overflow: hidden;
@@ -44,7 +44,7 @@
   vertical-align: top;
 }
 
-.restuarant__imageContainer__box {
+.restaurant__imageContainer__box {
   width: 100%;
   height: 165px;
   display: inline-block;
@@ -60,7 +60,7 @@
   opacity: 1 !important;
 }
 
-.restuarant__nameContainer {
+.restaurant__nameContainer {
   display: table-cell;
   vertical-align: middle;
   height: 100%;
@@ -70,28 +70,28 @@
   position: relative;
 }
 
-.restuarant__nameContainer__pos {
+.restaurant__nameContainer__pos {
   overflow: visible;
   position: relative;
   pointer-events: auto;
 }
-.restuarant__name {
+.restaurant__name {
   display: flex;
   justify-content: space-between;
 }
 
-.restuarant__name__flex {
+.restaurant__name__flex {
   display: flex;
 }
 
-.restuarant__name__flex__heading {
+.restaurant__name__flex__heading {
   max-width: 538px;
   margin: 0;
   font-weight: 300;
   font-size: 32px;
 }
 
-.restuarant__timeContainer {
+.restaurant__timeContainer {
   color: inherit;
   font-size: 14px;
   font-weight: 300;
@@ -103,10 +103,10 @@
   z-index: -1;
 }
 
-.restuarant__ratings {
+.restaurant__ratings {
   display: inline-block;
 }
-.restuarant__ratings__container {
+.restaurant__ratings__container {
   margin-top: 21px;
 }
 
@@ -155,11 +155,11 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.restuarant__opening__container {
+.restaurant__opening__container {
   opacity: 1;
   transition: opacity 0.2s ease-in-out;
 }
-.restuarant__opening {
+.restaurant__opening {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -168,10 +168,10 @@
   font-size: 15px;
   max-width: 538px;
 }
-.restuarant__opening__time {
+.restaurant__opening__time {
   margin-top: 8px;
 }
-.restuarant__opening__text1 {
+.restaurant__opening__text1 {
   padding: 5px 8px;
   background-color: #8a584b;
   color: #fff;
@@ -181,20 +181,20 @@
   white-space: nowrap;
   display: inline-block;
 }
-.restuarant__opening__text2 {
+.restaurant__opening__text2 {
   background-color: #35728a !important;
 }
-.restuarant__opening__text3 {
+.restaurant__opening__text3 {
   margin-right: 15px;
 }
 
-.restuarant__area {
+.restaurant__area {
   display: inline-block;
   color: inherit;
   opacity: 0.7;
   font-size: 15px;
 }
-.restuarant__area2 {
+.restaurant__area2 {
   margin-top: 12px;
 }
 

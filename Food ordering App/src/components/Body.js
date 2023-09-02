@@ -1,16 +1,17 @@
-import Restuarant from "./Restuarant";
+import Restaurant from "./Restaurant";
 import React, { useEffect, useState } from "react";
 import Pagination from "./Pagination";
-import { RESTUARANT_FETCH_URL, FETCH_TYPE } from "../constants";
 import { ShimmerSimpleGallery } from "react-shimmer-effects";
 import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useRestaurantInfo } from "../utils/useRestaurantInfo";
 
 export default Body = (props) => {
   const [searchText, getLat, getLng] = useOutletContext();
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [filteredRestuarants, setFilteredRestaurants] = useState([]);
+  const [listOfRestaurants, setListOfRestaurants] = useState();
+  const [filteredrestaurants, setFilteredRestaurants] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+  const restaurants = useRestaurantInfo(getLat, getLng);
   // Define the number of records to display per page
   const [recordsPerPage] = useState(8);
 
@@ -20,33 +21,28 @@ export default Body = (props) => {
   // Calculate the index of the first record on the current page
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
-  // Get the records to display on the current page by slicing the filteredRestuarants array
-  const currentRecords = filteredRestuarants
-    ? filteredRestuarants.slice(indexOfFirstRecord, indexOfLastRecord)
+  // Get the records to display on the current page by slicing the filteredrestaurants array
+  const currentRecords = filteredrestaurants
+    ? filteredrestaurants.slice(indexOfFirstRecord, indexOfLastRecord)
     : [];
 
   // Calculate the total number of pages based on the number of filtered restaurants and the records per page
-  const nPages = filteredRestuarants
-    ? Math.ceil(filteredRestuarants.length / recordsPerPage)
+  const nPages = filteredrestaurants
+    ? Math.ceil(filteredrestaurants.length / recordsPerPage)
     : 0;
 
   // Check if the current page is the last page based on the number of records on the current page and the total number of filtered restaurants
   const isLastPage =
     currentRecords.length !== recordsPerPage ||
-    indexOfLastRecord === filteredRestuarants.length;
+    indexOfLastRecord === filteredrestaurants.length;
 
   // This useEffect hook is used to fetch the restaurants.
 
   useEffect(() => {
-    // Call the getRestuarants function to fetch the restaurants.
-    getRestuarants().then((response) => {
-      // Update the filtered restaurants state with the filtered data.
-      setListOfRestaurants(response);
-
-      // Reset the current page to 1.
-      setCurrentPage(1);
-    });
-  }, [getLat, getLng]);
+    setListOfRestaurants(restaurants);
+    // Reset the current page to 1.
+    setCurrentPage(1);
+  }, [restaurants]);
 
   // This useEffect hook is responsible for filtering the list of restaurants based on the searchText input value.
   // It is triggered whenever the searchText or listOfRestaurants change.
@@ -76,56 +72,26 @@ export default Body = (props) => {
     }
   }, [searchText, listOfRestaurants]);
 
-  // This function is an asynchronous function named "getRestuarants"
+  // This function is an asynchronous function named "getrestaurants"
   // It fetches a list of restaurants based on the provided latitude and longitude
-  async function getRestuarants() {
-    // The commented code block below is an alternative way to return a promise that resolves after 1 second
-    // This can be used as a mock for testing purposes
-    // return new Promise((res, rej) => {
-    //   setTimeout(() => res(restaurantList), 1000);
-    // });
-
-    // The latitude and longitude values are extracted and converted to strings using optional chaining
-    const restuarant = await fetch(
-      `${RESTUARANT_FETCH_URL}lat=${getLat?.toString()}&lng=${getLng?.toString()}&${FETCH_TYPE}`
-    )
-      // The response from the fetch request is converted to JSON
-      .then((response) => response.json())
-      // The resulting data is filtered to only include cards that have the property "restaurants"
-      .then((result) => {
-        return result.data?.cards.filter((card) => {
-          if (card.card.card?.gridElements?.infoWithStyle?.restaurants) {
-            return card.card.card.gridElements.infoWithStyle.restaurants;
-          }
-        });
-      })
-      // Any error that occurs during the fetch or data processing is logged to the console
-      .catch((err) => console.log(err));
-
-    // If the fetched list of restaurants is not null or empty, the first restaurant is returned
-    // Otherwise, the fetched list itself is returned
-    return restuarant
-      ? restuarant[0].card.card?.gridElements?.infoWithStyle?.restaurants
-      : restuarant;
-  }
 
   return (
     <main>
       <div className="mainContainer">
         <div className="dishContainer">
           <div className="dishItemContainer">
-            {filteredRestuarants && filteredRestuarants.length > 0 ? (
-              currentRecords.map((restuarant) => {
+            {filteredrestaurants && filteredrestaurants.length > 0 ? (
+              currentRecords.map((restaurant) => {
                 return (
                   <Link
-                    to={"/restuarant/" + restuarant?.info?.id}
-                    key={restuarant?.info?.id}
+                    to={"/restaurant/" + restaurant?.info?.id}
+                    key={restaurant?.info?.id}
                   >
-                    <Restuarant {...restuarant.info} />
+                    <Restaurant {...restaurant.info} />
                   </Link>
                 );
               })
-            ) : filteredRestuarants && filteredRestuarants.length === 0 ? (
+            ) : filteredrestaurants && filteredrestaurants.length === 0 ? (
               <div>Currently no restaurants available </div>
             ) : (
               <ShimmerSimpleGallery card imageHeight={200} caption />

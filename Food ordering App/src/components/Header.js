@@ -9,7 +9,7 @@ import {
 } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
-import restuarant from "../../../Food ordering App/images/restuarant.png";
+import restaurant from "../../../Food ordering App/images/restaurant.png";
 import { GET_COORDS, GOOGLE_API_KEY } from "../constants";
 import Geocode from "react-geocode";
 import { Sidebar } from "./Sidebar";
@@ -105,10 +105,10 @@ const Header = (props) => {
         flag={sidebarFlag}
         addressChange={setAddress}
       />
-      <img src={restuarant} alt="" className="logo" />
-      <span className="address">
+      <img src={restaurant} alt="" className="logo" />
+      <span className="address" onClick={sidebarHandler}>
         {address}{" "}
-        <span onClick={sidebarHandler}>
+        <span>
           <KeyboardArrowDown />
         </span>
       </span>

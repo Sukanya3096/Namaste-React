@@ -18,6 +18,7 @@ export const Sidebar = (props) => {
     });
     setAddress(formatted_addr.join(","));
     props.addressChange(formatted_addr.join(","));
+    setShow(false);
   };
 
   useEffect(() => {

@@ -26,6 +26,7 @@
   position: relative;
   transform: translateZ(0);
 }
+
 .main {
   flex-grow: 1;
 }
@@ -547,8 +548,8 @@ main {
 }
 .active > .page-link,
 .page-link.active {
-  background-color: #f8901c;
-  border-color: #f8901c;
+  background-color: #f8901c !important;
+  border-color: #f8901c !important;
 }
 
 .page-link {
@@ -605,8 +606,13 @@ main {
   border-radius: 15px;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 .itemContent .itemName {
   font-size: 16px;
+  color: black;
 }
 .itemContent .cuisine {
   font-size: 12px;
@@ -1037,5 +1043,7 @@ main {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  cursor: pointer;
   font-size: 14px;
+  flex-basis: 290px;
 }
