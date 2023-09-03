@@ -12,9 +12,11 @@ const RestaurantMenu = () => {
   const { id } = useParams();
   const [items, setItems] = useState(null);
 
-  const restaurant = useRestaurantInfo(getLat, getLng, id);
+  const { restaurants: restaurant } = useRestaurantInfo(getLat, getLng, id);
   useEffect(() => {
-    getItems(restaurant);
+    if (restaurant) {
+      getItems(restaurant);
+    }
   }, [restaurant]);
 
   function getItems(data) {

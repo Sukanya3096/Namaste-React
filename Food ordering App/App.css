@@ -44,11 +44,11 @@
   line-height: normal;
   border: none;
   outline: none;
-  height: 70px;
+  height: 50px;
   width: 100%;
   font-size: 17px;
   margin: 0;
-  padding: 0 20px;
+  padding: 0 20px 15px;
   padding-top: 22px;
   box-shadow: none;
   box-sizing: border-box;
@@ -57,6 +57,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 500;
+}
+
+.input-3:focus {
+  box-shadow: 0 1px 7px 1px #d4d5d9;
 }
 header {
   display: flex;
@@ -1045,5 +1049,4 @@ a {
   white-space: nowrap;
   cursor: pointer;
   font-size: 14px;
-  flex-basis: 290px;
 }

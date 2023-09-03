@@ -1,9 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
+import { ShimmerSimpleGallery } from "react-shimmer-effects";
 import { AppLayout } from "./App";
 import Error from "./components/Error";
 import Body from "./components/Body";
-import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { lazy, Suspense } from "react";
+
+const Contacts = lazy(() => import("./components/Contact"));
 
 const appRouter = () => {
   return createBrowserRouter([
@@ -18,11 +21,23 @@ const appRouter = () => {
         },
         {
           path: "/contact",
-          element: <Contact />,
+          element: (
+            <Suspense
+              fallback={<ShimmerSimpleGallery card imageHeight={200} caption />}
+            >
+              <Contacts />
+            </Suspense>
+          ),
         },
         {
           path: "/about",
-          element: <Contact />,
+          element: (
+            <Suspense
+              fallback={<ShimmerSimpleGallery card imageHeight={200} caption />}
+            >
+              <Contacts />
+            </Suspense>
+          ),
         },
         {
           path: "/restaurant/:id",

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM, { createRoot } from "react-dom/client";
 import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -34,5 +34,5 @@ export const AppLayout = () => {
 
 const routes = appRouter();
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={routes} />);

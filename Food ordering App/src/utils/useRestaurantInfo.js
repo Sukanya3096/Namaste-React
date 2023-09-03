@@ -1,7 +1,8 @@
+"use strict";
 import { useEffect, useState } from "react";
 import { restaurant_FETCH_URL, FETCH_TYPE } from "../constants";
 export const useRestaurantInfo = (lat, lng, resId) => {
-  const [items, setItems] = useState();
+  const [items, setItems] = useState({ restaurants: null, header: null });
 
   useEffect(() => {
     if (resId && lat && lng) {
@@ -16,7 +17,7 @@ export const useRestaurantInfo = (lat, lng, resId) => {
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat?.toString()}&lng=${lng?.toString()}&restaurantId=${resId}`
     );
     const response = await data.json();
-    setItems(response.data);
+    setItems({ restaurants: response.data, header: null });
   }
 
   async function getRestaurants() {
@@ -34,11 +35,7 @@ export const useRestaurantInfo = (lat, lng, resId) => {
       .then((response) => response.json())
       // The resulting data is filtered to only include cards that have the property "restaurants"
       .then((result) => {
-        return result.data?.cards.filter((card) => {
-          if (card.card.card?.gridElements?.infoWithStyle?.restaurants) {
-            return card.card.card.gridElements.infoWithStyle.restaurants;
-          }
-        });
+        return result.data;
       })
       // Any error that occurs during the fetch or data processing is logged to the console
       .catch((err) => console.log(err));
@@ -46,10 +43,32 @@ export const useRestaurantInfo = (lat, lng, resId) => {
     // If the fetched list of restaurants is not null or empty, the first restaurant is returned
     // Otherwise, the fetched list itself is returned
     restaurant
-      ? setItems(
-          restaurant[0].card.card?.gridElements?.infoWithStyle?.restaurants
-        )
-      : setItems(restaurant);
+      ? getRestaurantData(restaurant)
+      : setItems({ restaurants: restaurant, header: null });
+  }
+
+  function getRestaurantData(restaurant) {
+    const restaurants = restaurant.cards.filter((card) => {
+      if (card.card.card?.gridElements?.infoWithStyle?.restaurants) {
+        return card.card.card.gridElements.infoWithStyle.restaurants;
+      }
+    });
+
+    setItems({
+      restaurants:
+        restaurants[0]?.card.card?.gridElements?.infoWithStyle?.restaurants,
+      header: getHeaders(restaurant),
+    });
+  }
+
+  function getHeaders(restaurant) {
+    const header = {
+      header: restaurant.cards[0].card.card?.header,
+      id: restaurant.cards[0].card.card?.id,
+      cards: restaurant.cards[0].card.card?.imageGridCards,
+    };
+
+    return header;
   }
 
   return items;

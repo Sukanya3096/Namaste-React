@@ -7,6 +7,8 @@ export const FETCH_TYPE = "page_type=DESKTOP_WEB_LISTING";
 export const GET_COORDS =
   "https://maps.googleapis.com/maps/api/geocode/json?address=";
 
+export const BANNER = "topical_banner";
+
 export const restaurantList = [
   {
     type: "restaurant",

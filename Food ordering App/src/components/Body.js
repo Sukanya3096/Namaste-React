@@ -5,13 +5,19 @@ import { ShimmerSimpleGallery } from "react-shimmer-effects";
 import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useRestaurantInfo } from "../utils/useRestaurantInfo";
+import { useOnlineStatus } from "../utils/useOnlineStatus";
+import OffersCarousel from "./OffersCarousel";
 
 export default Body = (props) => {
   const [searchText, getLat, getLng] = useOutletContext();
   const [listOfRestaurants, setListOfRestaurants] = useState();
   const [filteredrestaurants, setFilteredRestaurants] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const restaurants = useRestaurantInfo(getLat, getLng);
+  const { restaurants: restaurants, header: header } = useRestaurantInfo(
+    getLat,
+    getLng
+  );
+  const onlineStatus = useOnlineStatus();
   // Define the number of records to display per page
   const [recordsPerPage] = useState(8);
 
@@ -35,8 +41,6 @@ export default Body = (props) => {
   const isLastPage =
     currentRecords.length !== recordsPerPage ||
     indexOfLastRecord === filteredrestaurants.length;
-
-  // This useEffect hook is used to fetch the restaurants.
 
   useEffect(() => {
     setListOfRestaurants(restaurants);
@@ -74,22 +78,26 @@ export default Body = (props) => {
 
   // This function is an asynchronous function named "getrestaurants"
   // It fetches a list of restaurants based on the provided latitude and longitude
+  if (onlineStatus == false)
+    return (
+      <main>
+        <div className="mainContainer">
+          <div className="dishContainer">
+            Looks like you are offline. Please check your internet connection!
+          </div>
+        </div>
+      </main>
+    );
 
   return (
     <main>
       <div className="mainContainer">
+        <OffersCarousel {...header} />
         <div className="dishContainer">
           <div className="dishItemContainer">
             {filteredrestaurants && filteredrestaurants.length > 0 ? (
               currentRecords.map((restaurant) => {
-                return (
-                  <Link
-                    to={"/restaurant/" + restaurant?.info?.id}
-                    key={restaurant?.info?.id}
-                  >
-                    <Restaurant {...restaurant.info} />
-                  </Link>
-                );
+                return <Restaurant {...restaurant.info} />;
               })
             ) : filteredrestaurants && filteredrestaurants.length === 0 ? (
               <div>Currently no restaurants available </div>

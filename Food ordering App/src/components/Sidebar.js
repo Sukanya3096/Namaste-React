@@ -35,6 +35,7 @@ export const Sidebar = (props) => {
             value={address}
             onChange={setAddress}
             onSelect={handleSelect}
+            className="addressInput"
           >
             {({
               getInputProps,
@@ -48,7 +49,7 @@ export const Sidebar = (props) => {
                     <input
                       {...getInputProps({
                         placeholder: "Search for area, street name..",
-                        className: "input-1 input-2 input-3",
+                        className: "input-3",
                       })}
                     />
                     {address.length > 0 && (
