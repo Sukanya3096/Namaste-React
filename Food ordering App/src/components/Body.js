@@ -61,13 +61,14 @@ export default Body = (props) => {
           .toLowerCase()
           .includes(searchText?.toLowerCase());
       });
-
+      console.log(filteredList);
       // Update the state variable filteredRestaurants with the filtered list
       setFilteredRestaurants(filteredList);
 
       // Reset the currentPage to 1
       setCurrentPage(1);
     } else {
+      console.log(listOfRestaurants);
       // If the searchText is empty, set the filteredRestaurants to the original list of restaurants
       setFilteredRestaurants(listOfRestaurants);
 
@@ -99,7 +100,8 @@ export default Body = (props) => {
               currentRecords.map((restaurant, i) => {
                 return <Restaurant {...restaurant.info} key={i} />;
               })
-            ) : filteredrestaurants && filteredrestaurants.length === 0 ? (
+            ) : (filteredrestaurants && filteredrestaurants.length === 0) ||
+              !filteredrestaurants ? (
               <div>Currently no restaurants available </div>
             ) : (
               <ShimmerSimpleGallery card imageHeight={200} caption />
