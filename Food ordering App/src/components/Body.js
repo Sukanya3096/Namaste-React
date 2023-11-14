@@ -42,9 +42,13 @@ export default Body = (props) => {
     indexOfLastRecord === filteredrestaurants.length;
 
   useEffect(() => {
-    setListOfRestaurants(restaurants);
-    // Reset the current page to 1.
-    setCurrentPage(1);
+    if (header?.id === "swiggy_not_present") {
+      setFilteredRestaurants([]);
+    } else {
+      setListOfRestaurants(restaurants);
+      // Reset the current page to 1.
+      setCurrentPage(1);
+    }
   }, [restaurants]);
 
   // This useEffect hook is responsible for filtering the list of restaurants based on the searchText input value.
@@ -68,7 +72,6 @@ export default Body = (props) => {
       // Reset the currentPage to 1
       setCurrentPage(1);
     } else {
-      console.log(listOfRestaurants);
       // If the searchText is empty, set the filteredRestaurants to the original list of restaurants
       setFilteredRestaurants(listOfRestaurants);
 
@@ -100,8 +103,7 @@ export default Body = (props) => {
               currentRecords.map((restaurant, i) => {
                 return <Restaurant {...restaurant.info} key={i} />;
               })
-            ) : (filteredrestaurants && filteredrestaurants.length === 0) ||
-              !filteredrestaurants ? (
+            ) : filteredrestaurants && filteredrestaurants.length === 0 ? (
               <div>Currently no restaurants available </div>
             ) : (
               <ShimmerSimpleGallery card imageHeight={200} caption />
