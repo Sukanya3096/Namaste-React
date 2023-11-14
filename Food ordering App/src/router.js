@@ -5,8 +5,10 @@ import Error from "./components/Error";
 import Body from "./components/Body";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { lazy, Suspense } from "react";
+import Cart from "./components/Cart";
 
 const Contacts = lazy(() => import("./components/Contact"));
+const CartItem = lazy(() => import("./components/Cart"));
 
 const appRouter = () => {
   return createBrowserRouter([
@@ -36,6 +38,16 @@ const appRouter = () => {
               fallback={<ShimmerSimpleGallery card imageHeight={200} caption />}
             >
               <Contacts />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/cart",
+          element: (
+            <Suspense
+              fallback={<ShimmerSimpleGallery card imageHeight={200} caption />}
+            >
+              <CartItem />
             </Suspense>
           ),
         },

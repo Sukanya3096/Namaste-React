@@ -1,12 +1,11 @@
 import { IMG_CDN_URL } from "../constants";
 import { StarRounded } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Chip } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
@@ -45,6 +44,7 @@ export default Restaurant = ({
         ":hover": {
           boxShadow: 20, // theme.shadows[20]
         },
+        filter: isOpen ? "" : "grayscale(100%)",
       }}
       onClick={navigateToRestaurant}
     >
@@ -116,46 +116,5 @@ export default Restaurant = ({
         </Typography>
       </CardContent>
     </Card>
-    // <div className="itemCard">
-    //   <div className="itemContent">
-    //     <div className="imgBox">
-    //       <img
-    //         src={IMG_CDN_URL + cloudinaryImageId}
-    //         alt="restaurant image"
-    //         className="itemImg"
-    //       />
-    //     </div>
-    //     <div
-    //       className={`isFavourite ${isFavourite ? "active" : ""}`}
-    //       onClick={() => setFavourite(!isFavourite)}
-    //     >
-    //       <Favorite />
-    //     </div>
-    //     <h3 className="itemName">{name}</h3>
-    //     <h5 className="cuisine">{cuisines.join(", ")}</h5>
-    //     <div className="bottom">
-    //       <div className="ratings">
-    //         {Array.apply(null, { length: 5 }).map((e, i) => (
-    //           <i
-    //             key={i}
-    //             className={`rating ${currentValue > i ? "orange" : "gray"}`}
-    //             onClick={() => handleClick(i + 1)}
-    //           >
-    //             <StarRounded />
-    //           </i>
-    //         ))}
-    //         <div style={{ fontSize: "0.8rem" }}>{costForTwoString}</div>
-    //       </div>
-    //       <i
-    //         className="addToCart"
-    //         onClick={() => {
-    //           setCart(Items.find((n) => n.id === id));
-    //         }}
-    //       >
-    //         <AddRounded />
-    //       </i>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };

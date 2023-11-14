@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import { ShimmerSimpleGallery } from "react-shimmer-effects";
 import { useOutletContext } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useRestaurantInfo } from "../utils/useRestaurantInfo";
 import { useOnlineStatus } from "../utils/useOnlineStatus";
 import OffersCarousel from "./OffersCarousel";
@@ -96,8 +95,8 @@ export default Body = (props) => {
         <div className="dishContainer">
           <div className="dishItemContainer">
             {filteredrestaurants && filteredrestaurants.length > 0 ? (
-              currentRecords.map((restaurant) => {
-                return <Restaurant {...restaurant.info} />;
+              currentRecords.map((restaurant, i) => {
+                return <Restaurant {...restaurant.info} key={i} />;
               })
             ) : filteredrestaurants && filteredrestaurants.length === 0 ? (
               <div>Currently no restaurants available </div>

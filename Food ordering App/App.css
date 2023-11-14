@@ -3,6 +3,7 @@
 @import "contact.css";
 @import "footer.css";
 @import "menu.css";
+@import "cart.css";
 .App {
   width: 100vw;
   background: #faf9fb;
@@ -133,10 +134,10 @@ header {
   min-height: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  font-size: small;
   position: absolute;
   right: 0;
-  top: -8px;
+  top: -10px;
 }
 
 .shoppingCart .cart_content p {
@@ -1049,4 +1050,9 @@ a {
   white-space: nowrap;
   cursor: pointer;
   font-size: 14px;
+  max-width: 290px;
+  margin-left: -35px;
+}
+.arrow {
+  margin-left: -75px;
 }

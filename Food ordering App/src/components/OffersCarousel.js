@@ -22,10 +22,12 @@ const OffersCarousel = (props) => {
     } else {
       firstFlag.current = false;
     }
-    if (index + 2 >= props.cards?.info.length) {
+    if (index + 2 >= props.cards?.info.length - 1) {
       setIsSlide(() => false);
     }
   };
+
+  const showDetails = (url) => {};
 
   if (!props) return loadingHeader;
 

@@ -1,0 +1,94 @@
+.restaurantDetails {
+  cursor: pointer;
+  padding: 20px 30px;
+  background: #fff;
+  display: flex;
+  min-height: 90px;
+}
+
+.restaurantName {
+  margin-left: 14px;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  min-height: 50px;
+}
+
+.restaurantName::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #282c3f;
+  width: 40px;
+  height: 2px;
+}
+
+.restaurantNameName_name {
+  font-size: 17px;
+  color: #282c3f;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.restaurantNameName_place {
+  font-size: 13px;
+  color: #686b78;
+}
+
+.restaurantImage {
+  width: 100px;
+  height: 70px;
+  position: relative;
+}
+
+.cartItems {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background: #feecee;
+  position: relative;
+}
+
+.item {
+  padding: 10px 14px !important;
+}
+
+.item_category {
+  display: flex;
+  align-items: flex-start;
+}
+
+.item_name {
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 10px;
+  margin-right: 14px;
+  flex-grow: 1;
+}
+
+.item_button {
+  bottom: 8px;
+  width: 96px;
+  min-height: 36px;
+  line-height: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.styles_cartAddButton {
+  left: 50%;
+  bottom: 8px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.item_price {
+  font-size: 13px;
+  color: #535665;
+}
