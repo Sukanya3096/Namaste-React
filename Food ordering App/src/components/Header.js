@@ -8,13 +8,12 @@ import {
   LocationCityRounded,
 } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import restaurant from "../../../Food ordering App/images/restaurant.png";
 import { GET_COORDS, GOOGLE_API_KEY } from "../constants";
 import Geocode from "react-geocode";
 import { Sidebar } from "./Sidebar";
 import { Link } from "react-router-dom";
-import CartContext from "../utils/CartContext";
 import { useSelector } from "react-redux";
 
 const Header = (props) => {
@@ -23,7 +22,6 @@ const Header = (props) => {
   const [address, setAddress] = useState("");
   const [sidebarFlag, setSidebarFlag] = useState(false);
 
-  const { items } = useContext(CartContext);
   const cartDetails = useSelector((store) => store.cart.items);
   console.log(cartDetails);
 
@@ -53,11 +51,6 @@ const Header = (props) => {
       });
     }
   }, [address]);
-
-  useEffect(() => {
-    console.log(items);
-    setCart(items.length);
-  }, items);
 
   async function getCoordsFromAddr(addr) {
     const coords = await fetch(

@@ -7,10 +7,15 @@ import nonVeg from "../../images/non-veg.png";
 import React, { useEffect, useState } from "react";
 import { addToCart, removeFromCart } from "../utils/cartSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+
 export default Cart = () => {
   const restaurantInfo = useSelector((store) => store.cart.restaurantDetails);
   const cartDetails = useSelector((store) => store.cart.items);
   const [uniqueCartItems, setUniqueCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,14 +36,34 @@ export default Cart = () => {
     setUniqueCartItems(newArrayOfObjects);
   }, [cartDetails]);
 
+  useEffect(() => {
+    setTotalPrice(getTotalPrice());
+  }, [uniqueCartItems]);
+
+  const navigateToHome = () => {
+    navigate(`/`);
+  };
+
   const addItemToCart = (addOrRemoveFlag, item) => {
     if (addOrRemoveFlag === "add") {
-      //setAddedItems((addedItems) => (addedItems += 1));
       dispatch(addToCart(item));
     } else {
-      //setAddedItems((addedItems) => (addedItems -= 1));
       dispatch(removeFromCart(item));
     }
+    setTotalPrice(getTotalPrice());
+  };
+
+  const getTotalPrice = () => {
+    let total = 0;
+    uniqueCartItems.forEach((item) => {
+      if (item.card?.info?.price) {
+        total += (item.card?.info?.price / 100) * item.times;
+      } else {
+        total += (item.card?.info?.defaultPrice / 100) * item.times;
+      }
+    });
+    console.log(total);
+    return Math.round(total * 100) / 100 || total;
   };
 
   return (
@@ -57,8 +82,15 @@ export default Cart = () => {
         >
           <Paper>
             {uniqueCartItems.length === 0 ? (
-              <div className="emptyCart">
-                <h1>Cart is Empty</h1>
+              <div className="empty_cart">
+                <div className="emptyImage"></div>
+                <div className="empty_message ">Your cart is empty</div>
+                <div className="empty_message2">
+                  You can go to home to view more restaurants
+                </div>
+                <Button onClick={navigateToHome}>
+                  SEE RESTAURANTS NEAR YOU
+                </Button>
               </div>
             ) : (
               <>
@@ -87,7 +119,7 @@ export default Cart = () => {
                     </div>
                   </span>
                 </div>
-                <div className="cartItems">
+                <div className="cartItems cart_bottom">
                   {uniqueCartItems.map((item) => (
                     <div key={item.card?.info?.id} className="item">
                       <div className="item_category">
@@ -142,6 +174,10 @@ export default Cart = () => {
                       </div>
                     </div>
                   ))}
+                </div>
+                <div className="cart_total">
+                  <div>TO PAY</div>
+                  <div className="cart_total_price">₹ {totalPrice}</div>
                 </div>
               </>
             )}

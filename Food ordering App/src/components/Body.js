@@ -52,9 +52,10 @@ export default Body = (props) => {
 
   useEffect(() => {
     // Check if the searchText is not empty
+    console.log("search: ", searchText);
     if (searchText && searchText !== "") {
       // Filter the listOfRestaurants array based on the name of each restaurant
-      const filteredList = listOfRestaurants.filter((restaurant) => {
+      const filteredList = listOfRestaurants?.filter((restaurant) => {
         // Convert the restaurant name and searchText to lowercase and check if the restaurant name includes the searchText
         return restaurant.info.name
           .toLowerCase()
