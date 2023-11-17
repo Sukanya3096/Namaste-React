@@ -68,6 +68,7 @@
   font-weight: 400;
   margin-left: 10px;
   margin-right: 14px;
+  margin-top: -2px;
   flex-grow: 1;
 }
 
@@ -91,4 +92,56 @@
 .item_price {
   font-size: 13px;
   color: #535665;
+}
+
+.cart_total {
+  width: 100%;
+  background: #fff;
+  height: 60px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: #282c3f;
+  padding: 0 30px;
+  z-index: 1;
+}
+
+.cart_total_price {
+  flex: 1;
+  text-align: right;
+}
+
+.cart_bottom {
+  margin-top: 17px;
+  padding-bottom: 21px;
+  border-bottom: 2px solid #282c3f;
+}
+.empty_cart {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+}
+.emptyImage {
+  width: 271px;
+  height: 256px;
+  background-image: url(https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+}
+.empty_message {
+  margin-top: 24px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #535665;
+}
+.empty_message2 {
+  margin-top: 8px;
+  color: #7e808c;
 }

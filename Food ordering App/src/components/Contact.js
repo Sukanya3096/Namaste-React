@@ -3,9 +3,6 @@ import MapIcon from "@mui/icons-material/Map";
 import DraftsIcon from "@mui/icons-material/Drafts";
 
 const Contact = () => {
-  {
-    console.log("in contact");
-  }
   return (
     <main>
       <div className="mainContainer">

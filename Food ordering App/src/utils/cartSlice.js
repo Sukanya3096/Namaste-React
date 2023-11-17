@@ -17,7 +17,7 @@ const cartSlice = createSlice({
       state.items.splice(index, 1);
     },
     clearCart: (state) => {
-      state.items = [];
+      state.items.length = 0;
     },
     isNewFlag: (state, action) => {
       console.log("in action", action, action.payload);
