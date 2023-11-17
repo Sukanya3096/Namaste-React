@@ -8,3 +8,17 @@ test("Should load Contact component", () => {
   const heading = screen.getAllByRole("heading");
   expect(heading[0]).toBeInTheDocument();
 });
+
+test("Should load button inside Contact component", () => {
+  render(<Contact />);
+
+  const button = screen.getByRole("button");
+  expect(button).toBeInTheDocument();
+});
+
+test("Should load textbox inside Contact component", () => {
+  render(<Contact />);
+
+  const textBox = screen.getAllByRole("textbox");
+  expect(textBox.length).toBe(3);
+});
